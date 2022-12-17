@@ -280,7 +280,7 @@ o.rmempty = false
 
 if has_chnlist and api.is_finded("chinadns-ng") then
     o = s:taboption("DNS", Flag, "chinadns_ng", translate("ChinaDNS-NG"), translate("The effect is better, but will increase the memory."))
-    o.default = "0"
+    o.default = "1"
     if api.is_finded("smartdns") then
         o:depends({dns_shunt = "dnsmasq", dns_mode = "dns2socks"})
         o:depends({dns_shunt = "dnsmasq", dns_mode = "dns2tcp"})
@@ -452,7 +452,7 @@ for k, v in pairs(nodes_table) do
         socks_node:value(v.id, v["remark"])
     end
 end
-
+m:append(Template(appname .. "/global/status_bottom"))
 m:append(Template(appname .. "/global/footer"))
 
 return m
