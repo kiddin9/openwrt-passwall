@@ -172,7 +172,7 @@ udp_node:value("tcp", translate("Same as the tcp node"))
 s:tab("DNS", translate("DNS"))
 
 o = s:taboption("DNS", Flag, "filter_proxy_ipv6", translate("Filter Proxy Host IPv6"), translate("Experimental feature."))
-o.default = "0"
+o.default = "1"
 
 ---- DNS Forward Mode
 dns_mode = s:taboption("DNS", ListValue, "dns_mode", translate("Filter Mode"))
@@ -268,7 +268,7 @@ o.rmempty = false
 
 if has_chnlist and api.is_finded("chinadns-ng") then
     o = s:taboption("DNS", Flag, "chinadns_ng", translate("ChinaDNS-NG"), translate("The effect is better, but will increase the memory."))
-    o.default = "0"
+    o.default = "1"
 	o:depends({dns_mode = "dns2socks"})
 	o:depends({dns_mode = "dns2tcp"})
 	o:depends({dns_mode = "v2ray", v2ray_dns_mode = "tcp"})
@@ -431,6 +431,7 @@ for k, v in pairs(nodes_table) do
     end
 end
 
+m:append(Template(appname .. "/global/status_bottom"))
 m:append(Template(appname .. "/global/footer"))
 
 return m
