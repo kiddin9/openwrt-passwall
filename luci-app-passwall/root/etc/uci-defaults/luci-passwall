@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ "`which nft`" ] && uci -q set passwall.@global_forwarding[0].use_nft=1
+
 if [ -e "/etc/config/ucitrack" ]; then
     uci -q batch <<-EOF
  		delete ucitrack.@passwall[-1]
